@@ -15,7 +15,7 @@ export default defineComponent({
   name: 'App',
   components: { MobileConsole },
   setup() {
-    console.log('环境配置', config)
+    // console.log('环境配置', config)
   }
 })
 </script>

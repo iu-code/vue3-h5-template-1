@@ -76,3 +76,86 @@ export const isWeChat = () => {
   //通过正则表达式匹配ua中是否含有MicroMessenger字符串
   return !!ua.match(/MicroMessenger/i)
 }
+
+// 校验邮箱
+export const checkEmailFormat = (inputEmail: string) => {
+  const email = inputEmail.trim()
+  if (!email) {
+    return {
+      pass: false,
+      msg: 'Please enter your email'
+    }
+  }
+  if (!/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/.test(email)) {
+    return {
+      pass: false,
+      msg: 'Invalid email format'
+    }
+  }
+  return {
+    pass: true,
+    msg: '',
+    email
+  }
+}
+// 校验昵称
+export const checkNicknameFormat = (nickName: string) => {
+  if (!nickName) {
+    return 'Please enter your nickname'
+  }
+  if (!/^[0-9a-zA-Z]*$/g.test(nickName)) {
+    return 'The name can only contain letters and numbers, no special characters'
+  }
+  return false
+}
+
+export const checkContactName = (checkContactName: string) => {
+  if (!checkContactName) {
+    return {
+      pass: true,
+      msg: ''
+    }
+  }
+  if (!/^[0-9a-zA-Z]{1,60}/g.test(checkContactName)) {
+    return {
+      pass: false,
+      msg: 'The name can only contain letters and numbers, no special characters'
+    }
+  }
+  return {
+    pass: true,
+    msg: ''
+  }
+}
+
+// 校验密码
+export const checkPassword = (val: string) => {
+  if (/^(?![\d]+$)(?![a-z]+$)(?![A-Z]+$)(?![~\\!@#$%\\^&\\*\\(\\)_+\-=?.,`]+$)[\da-zA-z~\\!@#$%\\^&\\*\\(\\)_+\-=?.,`]{8,20}$/.test(val)) {
+    return /\d+/.test(val) && /[a-zA-z]+/.test(val)
+  } else {
+    return false
+  }
+}
+
+/** 获取所有参数
+* @returns json/object
+*/
+export const getQueryString = function (url?:string) {
+  // 定义返回结果
+  const result: {
+    [s: string]: string
+  } = {}
+  // 获取url上的参数（使用decodeURIComponent对url参数进行解码）
+  const herfUrl = url || decodeURIComponent(window.location.href) || ''
+  const hash = herfUrl.split('?')[1] || ''
+  const tempArr = hash !== '' ? hash.substr(0).split('&') : []
+  tempArr.forEach((item) => {
+    if (item) {
+      // 将参数名和参数值拆分
+      const itemArr = item.split('=')
+      // 参数名作为key, 参数值为value
+      result[itemArr[0]] = itemArr[1]
+    }
+  })
+  return result
+}

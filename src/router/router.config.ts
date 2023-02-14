@@ -7,46 +7,46 @@ export const constantRouterMap: Array<RouteRecordRaw> = [
     component: () => import('@/views/layouts/index.vue'),
     redirect: '/home',
     meta: {
-      title: '首页',
+      title: 'home',
       keepAlive: false
     },
     children: [
       {
         path: '/home',
         name: 'Home',
-        component: () => import(/* webpackChunkName: "tabbar" */ '@/views/tabBar/home/index.vue'),
+        component: () => import(/* webpackChunkName: "tabbar" */ '@/views/home/index.vue'),
         meta: { title: '首页', keepAlive: false, showTab: true }
-      },
-      {
-        path: '/demo',
-        name: 'Dome',
-        component: () => import(/* webpackChunkName: "tabbar" */ '@/views/tabBar/dome/index.vue'),
-        meta: { title: '案例', keepAlive: false, showTab: true }
-      },
-      {
-        path: '/about',
-        name: 'About',
-        component: () => import(/* webpackChunkName: "tabbar" */ '@/views/tabBar/about/index.vue'),
-        meta: { title: '关于我', keepAlive: false, showTab: true }
       }
     ]
   },
   {
-    path: '/rem',
-    name: 'Rem',
-    component: () => import(/* webpackChunkName: "about" */ '@/views/Rem.vue'),
-    meta: { title: 'Rem', keepAlive: false, showTab: true }
+    path: '/login',
+    name: 'login',
+    component: () => import('../views/login/LoginIndex.vue')
   },
   {
-    path: '/scssConfig',
-    name: 'ScssConfig',
-    component: () => import(/* webpackChunkName: "about" */ '@/views/ScssConfig.vue'),
-    meta: { title: 'ScssConfig', keepAlive: false, showTab: true }
+    path: '/signUp',
+    name: 'signUp',
+    component: () => import('../views/login/SignUp.vue')
   },
   {
-    path: '/storage',
-    name: 'Storage',
-    component: () => import(/* webpackChunkName: "about" */ '@/views/Storage/index.vue'),
-    meta: { title: 'Storage使用', keepAlive: false, showTab: true }
-  }
+    path: '/createAccount',
+    name: 'createAccount',
+    component: () => import('../views/login/CreateAccount.vue')
+  },
+  {
+    path: '/createWallet',
+    name: 'createWallet',
+    component: () => import('../views/login/CreateWallet.vue')
+  },
+  {
+    path: '/linkSocialMedia',
+    name: 'linkSocialMedia',
+    component: () => import('../views/login/LinkSocialMedia.vue')
+  },
+  {
+    path: '/influencerInfo',
+    name: 'influencerInfo',
+    component: () => import('../views/login/InfluencerInfo.vue')
+  },
 ]

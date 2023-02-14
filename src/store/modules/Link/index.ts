@@ -11,7 +11,7 @@ const login: Module<ILinkState, IGlobalState> = {
   state,
   mutations: {
     ['SET_INIT_LINK'](state, data) {
-      console.log(data)
+      // console.log(data)
       state.initLink = data
     }
   },

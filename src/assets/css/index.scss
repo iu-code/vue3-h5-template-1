@@ -7,12 +7,13 @@ body,
 #app {
   height: 100%;
   color: #333333;
-  font-family: Arial, Helvetica, 'STHeiti STXihei', 'Microsoft YaHei', Tohoma, sans-serif;
+  font-family: HelveticaNeue-Bold, HelveticaNeue;
   background-color: $background-color;
 }
 
 .app-container {
-  padding-bottom: 50px;
+  width: 375px;
+  // padding-bottom: 50px;
 }
 
 #__vconsole {
@@ -50,4 +51,22 @@ body,
       background-color: #fff;
     }
   }
+}
+
+.van-button--default{
+  background: #07C8CF !important;
+  border-radius: 6px !important;
+  color: #fff !important;
+  font-weight: bold !important;
+  border: none !important;
+  font-family: HelveticaNeue-Bold, HelveticaNeue;
+}
+
+.van-button--primary{
+  background: #BD4BE7!important;
+  border-radius: 6px !important;
+  color: #fff !important;
+  font-weight: bold !important;
+  border: none !important;
+  font-family: HelveticaNeue-Bold, HelveticaNeue;
 }

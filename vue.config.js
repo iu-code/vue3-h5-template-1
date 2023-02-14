@@ -4,6 +4,8 @@ console.log(defaultSettings.title)
 // page title
 const name = defaultSettings.title || 'vue mobile template'
 const IS_PROD = ['production', 'prod'].includes(process.env.NODE_ENV)
+// const { VantResolver } = require('unplugin-vue-components/resolvers');
+// const ComponentsPlugin = require('unplugin-vue-components/webpack');
 
 module.exports = {
   // lintOnSave: true, // lint检查
@@ -21,18 +23,17 @@ module.exports = {
       //  当出现编译器错误或警告时，在浏览器中显示全屏覆盖层
       warnings: false,
       errors: true
-    }
+    },
     //配置跨域
-    // proxy: {
-    //   '/api': {
-    //       target: "https://test.xxx.com",
-    //       // ws: true, // 是否启用websockets
-    //       changOrigin:true, // 开启代理，在本地创建一个虚拟服务端
-    //       pathRewrite:{
-    //           '^/api':'/'
-    //       }
-    //   }
-    // }
+    proxy: {
+      '/api': {
+          target: "http://54.169.105.78:8000",
+          changOrigin:true, // 开启代理，在本地创建一个虚拟服务端
+          pathRewrite:{
+              '^/api':'api'
+          }
+      }
+    }
   },
   css: {
     loaderOptions: {
@@ -57,16 +58,32 @@ module.exports = {
       }
     }
   },
-  configureWebpack: (config) => {
-    config.name = name
-    // 生产环境配置
-    if (IS_PROD) {
-      config['performance'] = {
-        //打包文件大小配置
-        maxEntrypointSize: 10000000,
-        maxAssetSize: 30000000
+  // configureWebpack: (config) => {
+  //   config.name = name
+  //   // 生产环境配置
+  //   if (IS_PROD) {
+  //     config['performance'] = {
+  //       //打包文件大小配置
+  //       maxEntrypointSize: 10000000,
+  //       maxAssetSize: 30000000
+  //     }
+  //   }
+  // },
+  configureWebpack:{
+    // plugins: [
+    //   ComponentsPlugin({
+    //     resolvers: [VantResolver()],
+    //   }),
+    // ],
+    module: {
+          rules: [
+              {
+                  test: /.mjs$/,
+                  include: /node_modules/,
+                  type: "javascript/auto"
+              },
+          ]
       }
-    }
   },
   chainWebpack: (config) => {
     // ts-import-plugin 配置
